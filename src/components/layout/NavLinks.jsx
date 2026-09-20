@@ -19,8 +19,8 @@ export default function NavLinks({ links }) {
             <Link
               href={link.href}
               aria-current={active ? "page" : undefined}
-              className={`relative py-1 text-sm font-medium transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:rounded-full after:bg-forest after:transition-transform hover:text-forest ${
-                active ? "font-semibold text-forest after:scale-x-100" : "text-ink/80 after:scale-x-0 hover:after:scale-x-100"
+              className={`relative py-1 text-sm font-light tracking-wide transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:rounded-full after:bg-forest after:transition-transform hover:text-forest ${
+                active ? "font-normal text-forest after:scale-x-100" : "text-ink/75 after:scale-x-0 hover:after:scale-x-100"
               }`}
             >
               {link.label}
