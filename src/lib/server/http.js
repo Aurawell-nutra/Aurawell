@@ -74,7 +74,10 @@ export function assertSameOrigin(request) {
     throw new HttpError(403, "Forbidden");
   }
   const allowed = new Set([request.headers.get("host"), new URL(env.appUrl).host, new URL(env.adminUrl).host].filter(Boolean));
-  if (!allowed.has(host)) throw new HttpError(403, "Forbidden");
+  // Outside production, also accept localhost on any port so `npm run dev` works
+  // even while .env holds the live domains.
+  const isLocal = !env.isProduction && /^(localhost|127\.0\.0\.1|\[::1\]|[a-z0-9-]+\.localhost)(:\d+)?$/i.test(host);
+  if (!allowed.has(host) && !isLocal) throw new HttpError(403, "Forbidden");
 }
 
 const MAX_JSON_BYTES = 64 * 1024;
