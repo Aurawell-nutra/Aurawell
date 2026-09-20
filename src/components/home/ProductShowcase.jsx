@@ -19,7 +19,7 @@ export default function ProductShowcase({ products }) {
 
         <ul className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-6 lg:grid-cols-4">
           {products.map((product) => (
-            <li key={product.id} id={product.slug} className="scroll-mt-24">
+            <li key={product.id} id={product.slug} className="flex flex-col scroll-mt-24">
               <ProductCard product={product} />
             </li>
           ))}
