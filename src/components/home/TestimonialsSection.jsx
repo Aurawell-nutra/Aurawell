@@ -7,7 +7,7 @@ export default function TestimonialsSection({ reviews = [] }) {
   if (reviews.length === 0) return null;
 
   return (
-    <section id="reviews" className="relative isolate scroll-mt-20 overflow-hidden bg-cream py-16 sm:py-20 lg:py-24">
+    <section id="reviews" className="relative isolate scroll-mt-20 overflow-hidden bg-cream py-12 sm:py-20 lg:py-24">
       <Image
         src="/images/decorative/leaves-corner.svg"
         alt=""

@@ -11,7 +11,7 @@ const pillars = [
 
 export default function BrandStorySection() {
   return (
-    <section id="about" className="relative isolate scroll-mt-20 overflow-hidden bg-ivory py-16 sm:py-20 lg:py-24">
+    <section id="about" className="relative isolate scroll-mt-20 overflow-hidden bg-ivory py-12 sm:py-20 lg:py-24">
       <Botanical name="corner" className="bottom-0 left-0 w-28 -scale-x-100 opacity-60 sm:w-40" />
       <Botanical name="sprig" className="top-0 right-0 w-16 -scale-100 opacity-50 sm:w-24" />
       <div className="relative container-page">

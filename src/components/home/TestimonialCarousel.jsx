@@ -29,7 +29,7 @@ export default function TestimonialCarousel({ testimonials }) {
         {testimonials.map((t) => (
           <li
             key={t.id}
-            className="flex w-[85%] shrink-0 snap-start flex-col rounded-3xl border border-line bg-white p-6 shadow-card sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+            className="flex w-[88%] shrink-0 snap-start flex-col rounded-3xl border border-line bg-white p-6 shadow-card sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
           >
             <div className="flex items-center justify-between">
               <div className="flex gap-0.5 text-gold" aria-label={`${t.rating} out of 5 stars`}>

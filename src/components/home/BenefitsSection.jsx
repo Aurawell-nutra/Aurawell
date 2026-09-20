@@ -13,7 +13,7 @@ const benefits = [
 
 export default function BenefitsSection() {
   return (
-    <section id="why-us" className="relative isolate scroll-mt-20 overflow-hidden bg-cream-dark/60 py-16 sm:py-20 lg:py-24">
+    <section id="why-us" className="relative isolate scroll-mt-20 overflow-hidden bg-cream-dark/60 py-12 sm:py-20 lg:py-24">
       <Botanical name="tropical" className="right-0 bottom-0 w-32 -scale-x-100 opacity-40 sm:w-44 lg:w-56" />
       <Botanical name="fern" className="top-0 left-0 w-20 -scale-y-100 opacity-50 sm:w-24 lg:w-32" />
       <Botanical name="leaf" className="top-12 right-[40%] hidden w-9 rotate-[60deg] opacity-40 lg:block" />
