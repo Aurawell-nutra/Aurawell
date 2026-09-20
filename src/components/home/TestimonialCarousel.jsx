@@ -24,12 +24,12 @@ export default function TestimonialCarousel({ testimonials }) {
 
       <ul
         ref={trackRef}
-        className="no-scrollbar -mx-4 flex flex-1 snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-4 md:mx-0 md:px-0"
+        className="no-scrollbar flex flex-1 snap-x snap-mandatory gap-6 overflow-x-auto scroll-pl-4 pb-4 pl-4 pr-4 md:pl-0 md:pr-0"
       >
         {testimonials.map((t) => (
           <li
             key={t.id}
-            className="flex w-[88%] shrink-0 snap-start flex-col rounded-3xl border border-line bg-white p-6 shadow-card sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+            className="flex w-[92%] shrink-0 snap-start flex-col rounded-3xl border border-line bg-white p-6 shadow-card sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
           >
             <div className="flex items-center justify-between">
               <div className="flex gap-0.5 text-gold" aria-label={`${t.rating} out of 5 stars`}>

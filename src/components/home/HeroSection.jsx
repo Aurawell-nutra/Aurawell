@@ -56,16 +56,21 @@ export default function HeroSection() {
     <section id="home" className="relative isolate bg-cream">
       {/* Phones get a portrait framing of the same photo, with its lower edge faded so the
           photo melts into the page and the copy can sit right under the product. */}
-      <Image
-        src="/images/banners/hero-background-mobile.webp"
-        alt="Aaurawell Daily Nutra Gummy jar with fresh fruit and leaves"
-        width={720}
-        height={799}
-        priority
-        unoptimized
-        sizes="100vw"
-        className="h-auto w-full lg:hidden"
-      />
+      <div
+        className="lg:hidden"
+        style={{ maskImage: "linear-gradient(to bottom, #000 60%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, #000 60%, transparent 100%)" }}
+      >
+        <Image
+          src="/images/banners/hero-background-mobile.webp"
+          alt="Aaurawell Daily Nutra Gummy jar with fresh fruit and leaves"
+          width={720}
+          height={799}
+          priority
+          unoptimized
+          sizes="100vw"
+          className="h-auto w-full"
+        />
+      </div>
       <Image
         src="/images/banners/hero-background.webp"
         alt="Aaurawell Daily Nutra Gummy jar with fresh fruit and leaves"
@@ -85,7 +90,7 @@ export default function HeroSection() {
       </div>
 
       {/* Small screens: copy tucked into the faded lower edge of the photo */}
-      <div className="container-page relative -mt-8 pb-10 sm:-mt-12 lg:hidden">
+      <div className="container-page relative -mt-20 pb-8 sm:-mt-24 lg:hidden">
         <HeroCopy className="mx-auto max-w-sm text-center sm:max-w-md" />
       </div>
     </section>
