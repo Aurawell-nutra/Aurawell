@@ -20,9 +20,9 @@ export default function NewsletterSection() {
 
           <div className="relative grid gap-8 lg:grid-cols-2 lg:gap-10 lg:items-center">
             <div className="text-center lg:text-left">
-              <p className="font-script text-3xl text-sage-dark">Aaurawell Nutra</p>
-              <h2 className="mt-1 text-3xl leading-tight text-white sm:text-4xl">New Era of Wellness</h2>
-              <p className="mx-auto mt-3 max-w-md text-sm text-white/75 lg:mx-0">
+              <p className="font-script text-2xl text-sage-dark sm:text-3xl">Aaurawell Nutra</p>
+              <h2 className="mt-1 font-serif text-2xl font-semibold leading-tight text-white sm:text-4xl">New Era of Wellness</h2>
+              <p className="mx-auto mt-2 max-w-md text-xs leading-relaxed text-white/75 sm:mt-3 sm:text-sm lg:mx-0">
                 Join our community for wellness tips, new launches and exclusive offers — straight to your inbox.
               </p>
               <NewsletterForm />
