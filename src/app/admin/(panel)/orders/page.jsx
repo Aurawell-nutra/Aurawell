@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Search } from "lucide-react";
 import { listAdminOrders, parseOrderFilters } from "@/lib/server/admin-orders";
+import { getAdminBase } from "@/lib/server/admin-base";
 import { ORDER_STATUSES, PAYMENT_STATUSES } from "@/lib/server/validation";
 import { formatPaise } from "@/lib/pricing-rules";
 import { inputClass } from "@/components/ui/FormField";
@@ -9,12 +10,13 @@ import { AdminPageHeader, Card, Pagination, StatusBadge, adminButton, dateTime }
 export const metadata = { title: "Orders" };
 
 export default async function AdminOrdersPage({ searchParams }) {
+  const base = await getAdminBase();
   const filters = parseOrderFilters(await searchParams);
   const { orders, total, page, pageCount } = await listAdminOrders(filters);
 
   const buildHref = (p) => {
     const params = new URLSearchParams(Object.entries({ ...filters, page: p }).filter(([, v]) => v !== undefined && v !== ""));
-    return `/orders?${params}`;
+    return `${base}/orders?${params}`;
   };
 
   return (
@@ -60,7 +62,7 @@ export default async function AdminOrdersPage({ searchParams }) {
                 {orders.map((o) => (
                   <tr key={o.id} className="border-t border-line first:border-0 hover:bg-ivory">
                     <td className="px-5 py-3">
-                      <Link href={`/orders/${o.id}`} className="font-medium text-forest hover:underline">{o.orderNumber}</Link>
+                      <Link href={`${base}/orders/${o.id}`} className="font-medium text-forest hover:underline">{o.orderNumber}</Link>
                       <p className="text-xs text-muted">{o._count.items} item{o._count.items === 1 ? "" : "s"}</p>
                     </td>
                     <td className="px-3 py-3">

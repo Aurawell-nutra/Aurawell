@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import FormField from "@/components/ui/FormField";
 import { apiFetch } from "@/lib/api-client";
 
-export default function AdminLoginForm() {
+export default function AdminLoginForm({ base = "" }) {
   const router = useRouter();
   const [state, setState] = useState({ busy: false, error: "" });
 
@@ -15,7 +15,7 @@ export default function AdminLoginForm() {
     setState({ busy: true, error: "" });
     try {
       await apiFetch("/api/admin/login", { method: "POST", body: { email: form.get("email"), password: form.get("password") } });
-      router.replace("/");
+      router.replace(base || "/");
       router.refresh();
     } catch (err) {
       setState({ busy: false, error: err.message });

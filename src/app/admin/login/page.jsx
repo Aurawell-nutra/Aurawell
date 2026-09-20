@@ -3,11 +3,13 @@ import { LogoMark } from "@/components/ui/Logo";
 import Botanical from "@/components/ui/Botanical";
 import AdminLoginForm from "@/components/admin/AdminLoginForm";
 import { getCurrentAdmin } from "@/lib/server/auth";
+import { getAdminBase } from "@/lib/server/admin-base";
 
 export const metadata = { title: "Sign in" };
 
 export default async function AdminLoginPage() {
-  if (await getCurrentAdmin().catch(() => null)) redirect("/");
+  const base = await getAdminBase();
+  if (await getCurrentAdmin().catch(() => null)) redirect(base || "/");
 
   return (
     <main className="relative isolate flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-cream via-ivory to-sage/60 px-4 py-12">
@@ -17,7 +19,7 @@ export default async function AdminLoginPage() {
         <LogoMark className="mx-auto h-14 w-auto" />
         <h1 className="mt-6 text-center text-3xl">Admin Sign In</h1>
         <p className="mt-1 text-center text-sm text-muted">Authorised staff only.</p>
-        <AdminLoginForm />
+        <AdminLoginForm base={base} />
       </div>
     </main>
   );

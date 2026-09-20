@@ -2,12 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { Plus } from "lucide-react";
 import { prisma } from "@/lib/server/db";
+import { getAdminBase } from "@/lib/server/admin-base";
 import { formatPaise } from "@/lib/pricing-rules";
 import { AdminPageHeader, Card, StatusBadge, adminButton } from "@/components/admin/ui";
 
 export const metadata = { title: "Products" };
 
 export default async function AdminProductsPage() {
+  const base = await getAdminBase();
   const products = await prisma.product.findMany({
     orderBy: [{ sortOrder: "asc" }, { createdAt: "asc" }],
     include: { _count: { select: { orderItems: true, reviews: true } } },
@@ -19,7 +21,7 @@ export default async function AdminProductsPage() {
         title="Products"
         description={`${products.length} products`}
         action={
-          <Link href="/products/new" className={adminButton.primary}>
+          <Link href={`${base}/products/new`} className={adminButton.primary}>
             <Plus className="size-4" aria-hidden /> Add Product
           </Link>
         }
@@ -68,7 +70,7 @@ export default async function AdminProductsPage() {
                     </td>
                     <td className="px-3 py-3 text-muted">{p.sortOrder}</td>
                     <td className="px-5 py-3 text-right">
-                      <Link href={`/products/${p.id}/edit`} className="text-forest hover:underline">Edit</Link>
+                      <Link href={`${base}/products/${p.id}/edit`} className="text-forest hover:underline">Edit</Link>
                     </td>
                   </tr>
                 ))}

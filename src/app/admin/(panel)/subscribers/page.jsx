@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { Search } from "lucide-react";
 import { prisma } from "@/lib/server/db";
+import { getAdminBase } from "@/lib/server/admin-base";
 import { inputClass } from "@/components/ui/FormField";
 import SubscriberActions from "@/components/admin/SubscriberActions";
 import { AdminPageHeader, Card, Pagination, StatusBadge, adminButton, dateTime } from "@/components/admin/ui";
@@ -15,6 +16,7 @@ const filterSchema = z.object({
 });
 
 export default async function AdminSubscribersPage({ searchParams }) {
+  const base = await getAdminBase();
   const { q, status, page = 1 } = filterSchema.parse((await searchParams) ?? {});
   const where = { ...(status && { status }), ...(q && { email: { contains: q, mode: "insensitive" } }) };
 
@@ -31,7 +33,7 @@ export default async function AdminSubscribersPage({ searchParams }) {
   ]);
   const count = (s) => counts.find((c) => c.status === s)?._count._all ?? 0;
   const pageCount = Math.max(1, Math.ceil(total / PAGE_SIZE));
-  const buildHref = (p) => `/subscribers?${new URLSearchParams(Object.entries({ q, status, page: p }).filter(([, v]) => v !== undefined && v !== ""))}`;
+  const buildHref = (p) => `${base}/subscribers?${new URLSearchParams(Object.entries({ q, status, page: p }).filter(([, v]) => v !== undefined && v !== ""))}`;
 
   return (
     <>

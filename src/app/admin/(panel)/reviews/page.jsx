@@ -1,6 +1,7 @@
 import { Search } from "lucide-react";
 import { prisma } from "@/lib/server/db";
 import { listAdminReviews, parseReviewFilters } from "@/lib/server/admin-reviews";
+import { getAdminBase } from "@/lib/server/admin-base";
 import { REVIEW_STATUSES } from "@/lib/server/validation";
 import { inputClass } from "@/components/ui/FormField";
 import ReviewActions from "@/components/admin/ReviewActions";
@@ -9,6 +10,7 @@ import { AdminPageHeader, Card, Pagination, StatusBadge, adminButton, dateTime }
 export const metadata = { title: "Reviews" };
 
 export default async function AdminReviewsPage({ searchParams }) {
+  const base = await getAdminBase();
   const filters = parseReviewFilters(await searchParams);
   const [{ reviews, total, page, pageCount }, products] = await Promise.all([
     listAdminReviews(filters),
@@ -17,7 +19,7 @@ export default async function AdminReviewsPage({ searchParams }) {
 
   const buildHref = (p) => {
     const params = new URLSearchParams(Object.entries({ ...filters, page: p }).filter(([, v]) => v !== undefined && v !== ""));
-    return `/reviews?${params}`;
+    return `${base}/reviews?${params}`;
   };
 
   return (

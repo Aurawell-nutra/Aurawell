@@ -2,6 +2,7 @@ import "server-only";
 import bcrypt from "bcryptjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { getAdminBase } from "./admin-base.js";
 import { prisma } from "./db.js";
 import { env } from "./env.js";
 import { HttpError } from "./http.js";
@@ -77,7 +78,7 @@ export async function destroySession() {
 /** For admin server components/pages: redirects to the login page when not signed in. */
 export async function requireAdminPage() {
   const current = await getCurrentAdmin();
-  if (!current) redirect("/login");
+  if (!current) redirect(`${await getAdminBase()}/login`);
   return current;
 }
 

@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { AlertTriangle, IndianRupee, MessageSquareQuote, Package, ShoppingBag } from "lucide-react";
 import { prisma } from "@/lib/server/db";
+import { getAdminBase } from "@/lib/server/admin-base";
 import { formatPaise } from "@/lib/pricing-rules";
 import { AdminPageHeader, Card, StatusBadge, dateTime } from "@/components/admin/ui";
 
 export const metadata = { title: "Dashboard" };
 
 export default async function AdminDashboard() {
+  const base = await getAdminBase();
   const [totalOrders, paidOrders, pendingOrders, revenue, totalProducts, activeProducts, lowStock, pendingReviews, recentOrders, recentReviews] =
     await Promise.all([
       prisma.order.count(),
@@ -33,7 +35,7 @@ export default async function AdminDashboard() {
     { label: "Total revenue", value: formatPaise(revenue._sum.totalAmount ?? 0), note: "From paid orders", icon: IndianRupee },
     { label: "Total orders", value: totalOrders, note: `${paidOrders} paid · ${pendingOrders} pending payment`, icon: ShoppingBag },
     { label: "Products", value: totalProducts, note: `${activeProducts} active`, icon: Package },
-    { label: "Pending reviews", value: pendingReviews, note: "Awaiting moderation", icon: MessageSquareQuote, href: "/reviews?status=PENDING" },
+    { label: "Pending reviews", value: pendingReviews, note: "Awaiting moderation", icon: MessageSquareQuote, href: `${base}/reviews?status=PENDING` },
   ];
 
   return (
@@ -66,7 +68,7 @@ export default async function AdminDashboard() {
           <ul className="mt-2 flex flex-wrap gap-2 text-sm">
             {lowStock.map((p) => (
               <li key={p.id}>
-                <Link href={`/products/${p.id}/edit`} className="rounded-full bg-white px-3 py-1 hover:underline">
+                <Link href={`${base}/products/${p.id}/edit`} className="rounded-full bg-white px-3 py-1 hover:underline">
                   {p.name}: {p.stockQuantity} left
                 </Link>
               </li>
@@ -79,7 +81,7 @@ export default async function AdminDashboard() {
         <Card>
           <div className="flex items-center justify-between">
             <h2 className="text-xl">Recent orders</h2>
-            <Link href="/orders" className="text-sm text-forest hover:underline">View all</Link>
+            <Link href={`${base}/orders`} className="text-sm text-forest hover:underline">View all</Link>
           </div>
           {recentOrders.length === 0 ? (
             <p className="mt-6 text-sm text-muted">No orders yet.</p>
@@ -90,7 +92,7 @@ export default async function AdminDashboard() {
                   {recentOrders.map((o) => (
                     <tr key={o.id} className="border-t border-line">
                       <td className="py-3 pr-3">
-                        <Link href={`/orders/${o.id}`} className="font-medium text-forest hover:underline">{o.orderNumber}</Link>
+                        <Link href={`${base}/orders/${o.id}`} className="font-medium text-forest hover:underline">{o.orderNumber}</Link>
                         <p className="text-xs text-muted">{o.customerName}</p>
                       </td>
                       <td className="py-3 pr-3 text-xs text-muted">{dateTime.format(o.createdAt)}</td>
@@ -107,7 +109,7 @@ export default async function AdminDashboard() {
         <Card>
           <div className="flex items-center justify-between">
             <h2 className="text-xl">Recent reviews</h2>
-            <Link href="/reviews" className="text-sm text-forest hover:underline">View all</Link>
+            <Link href={`${base}/reviews`} className="text-sm text-forest hover:underline">View all</Link>
           </div>
           {recentReviews.length === 0 ? (
             <p className="mt-6 text-sm text-muted">No reviews yet.</p>

@@ -20,12 +20,12 @@ const nav = [
 export default function AdminShell({ children }) {
   const pathname = usePathname();
   const router = useRouter();
-  const { admin, adminFetch } = useAdmin();
+  const { admin, adminFetch, base, adminUrl } = useAdmin();
   const [open, setOpen] = useState(false);
 
   const logout = async () => {
     await adminFetch("/api/admin/logout", { method: "POST" }).catch(() => {});
-    router.replace("/login");
+    router.replace(adminUrl("/login"));
     router.refresh();
   };
 
@@ -37,11 +37,12 @@ export default function AdminShell({ children }) {
       </div>
       <ul className="flex-1 space-y-1 p-3">
         {nav.map(({ href, label, icon: Icon, exact }) => {
-          const active = exact ? pathname === href : pathname.startsWith(href);
+          const target = adminUrl(href);
+          const active = exact ? pathname === target : pathname.startsWith(target);
           return (
             <li key={href}>
               <Link
-                href={href}
+                href={target}
                 onClick={() => setOpen(false)}
                 aria-current={active ? "page" : undefined}
                 className={cn(

@@ -75,7 +75,7 @@ function ImageField({ label, value, onChange, error, onUpload, uploading }) {
 
 export default function ProductForm({ product, hasOrders = false }) {
   const router = useRouter();
-  const { adminFetch } = useAdmin();
+  const { adminFetch, adminUrl } = useAdmin();
   const isNew = !product;
   const [form, setForm] = useState(() =>
     product
@@ -145,7 +145,7 @@ export default function ProductForm({ product, hasOrders = false }) {
         body: payload,
       });
       if (isNew) {
-        router.replace(`/products/${saved.id}/edit`);
+        router.replace(adminUrl(`/products/${saved.id}/edit`));
       } else {
         setMessage({ tone: "success", text: "Product saved." });
         router.refresh();
@@ -167,7 +167,7 @@ export default function ProductForm({ product, hasOrders = false }) {
     try {
       const res = await adminFetch(`/api/admin/products/${product.id}`, { method: "DELETE" });
       if (res.result === "deleted") {
-        router.replace("/products");
+        router.replace(adminUrl("/products"));
         router.refresh();
       } else {
         setForm((f) => ({ ...f, isActive: false, isFeatured: false }));
@@ -382,7 +382,7 @@ export default function ProductForm({ product, hasOrders = false }) {
           <span />
         )}
         <div className="flex gap-3">
-          <button type="button" onClick={() => router.push("/products")} className={adminButton.outline}>
+          <button type="button" onClick={() => router.push(adminUrl("/products"))} className={adminButton.outline}>
             Cancel
           </button>
           <button type="submit" disabled={saving || uploading} className={adminButton.primary}>

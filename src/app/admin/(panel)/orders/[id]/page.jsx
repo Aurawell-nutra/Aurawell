@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { getAdminOrder } from "@/lib/server/admin-orders";
+import { getAdminBase } from "@/lib/server/admin-base";
 import { idSchema, ORDER_TRANSITIONS } from "@/lib/server/validation";
 import { formatPaise } from "@/lib/pricing-rules";
 import OrderActions from "@/components/admin/OrderActions";
@@ -20,6 +21,7 @@ function Row({ label, children }) {
 }
 
 export default async function AdminOrderPage({ params }) {
+  const base = await getAdminBase();
   const parsed = idSchema.safeParse((await params).id);
   if (!parsed.success) notFound();
   const order = await getAdminOrder(parsed.data);
@@ -27,7 +29,7 @@ export default async function AdminOrderPage({ params }) {
 
   return (
     <>
-      <Link href="/orders" className="mb-4 inline-flex items-center gap-1.5 text-sm text-forest hover:underline">
+      <Link href={`${base}/orders`} className="mb-4 inline-flex items-center gap-1.5 text-sm text-forest hover:underline">
         <ArrowLeft className="size-4" aria-hidden /> All orders
       </Link>
       <AdminPageHeader
