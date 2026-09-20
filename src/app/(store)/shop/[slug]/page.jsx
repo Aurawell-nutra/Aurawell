@@ -18,7 +18,42 @@ export const dynamic = "force-dynamic";
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
-  return product ? { title: product.name, description: product.description } : {};
+  if (!product) return {};
+
+  const siteUrl = (process.env.NEXT_PUBLIC_APP_URL || "https://aaurawell.com").replace(/\/$/, "");
+  const canonical = `${siteUrl}/shop/${product.slug}`;
+  const imageUrl = product.mainImage?.startsWith("http")
+    ? product.mainImage
+    : `${siteUrl}${product.mainImage || "/images/banners/hero-background.webp"}`;
+
+  return {
+    title: `${product.name} — ${product.subtitle || "Wellness Gummy"}`,
+    description: product.description || product.about,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      title: product.name,
+      description: product.description || product.about,
+      url: canonical,
+      siteName: "Aaurawell Nutra",
+      images: [
+        {
+          url: imageUrl,
+          width: 800,
+          height: 800,
+          alt: product.name,
+        },
+      ],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: product.name,
+      description: product.description || product.about,
+      images: [imageUrl],
+    },
+  };
 }
 
 export default async function ProductPage({ params }) {
@@ -30,9 +65,52 @@ export default async function ProductPage({ params }) {
   const related = allProducts.filter((p) => p.slug !== slug).slice(0, 3);
   const { theme } = product;
 
+  const siteUrl = (process.env.NEXT_PUBLIC_APP_URL || "https://aaurawell.com").replace(/\/$/, "");
+  const productJsonLd = {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    name: product.name,
+    image: [
+      product.mainImage?.startsWith("http")
+        ? product.mainImage
+        : `${siteUrl}${product.mainImage || "/images/banners/hero-background.webp"}`,
+    ],
+    description: product.description || product.about,
+    sku: product.sku || product.slug,
+    brand: {
+      "@type": "Brand",
+      name: "Aaurawell Nutra",
+    },
+    offers: {
+      "@type": "Offer",
+      url: `${siteUrl}/shop/${product.slug}`,
+      priceCurrency: "INR",
+      price: product.price,
+      availability:
+        product.stock > 0
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+      itemCondition: "https://schema.org/NewCondition",
+    },
+    ...(product.rating && product.reviews > 0
+      ? {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: product.rating,
+            reviewCount: product.reviews,
+          },
+        }
+      : {}),
+  };
+
   return (
     <div style={theme.style}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
       <section className={cn("relative isolate overflow-hidden bg-gradient-to-b to-ivory", theme.tint)}>
+
         <Botanical name="corner" className="top-0 right-0 w-28 -scale-y-100 opacity-70 sm:w-44" />
         <Botanical name="eucalyptus" className="bottom-0 left-0 hidden w-24 opacity-40 lg:block" />
 
