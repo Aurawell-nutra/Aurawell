@@ -13,7 +13,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <HeroSection products={products} />
+      <HeroSection />
       <ProductShowcase products={products} />
       <BenefitsSection />
       <BrandStorySection />
