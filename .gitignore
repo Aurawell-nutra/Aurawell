@@ -1,0 +1,29 @@
+# dependencies
+node_modules/
+
+# builds
+.next/
+.next-admin/
+.next-verify/
+out/
+build/
+
+# secrets — never commit real credentials
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# admin image uploads (runtime data, not source)
+aurawell-store/uploads/*
+!aurawell-store/uploads/.gitkeep
+
+# editor / OS
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+
+# local tooling
+.claude/
+.vercel

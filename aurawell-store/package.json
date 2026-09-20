@@ -1,0 +1,43 @@
+{
+  "name": "aurawell-store",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/run.mjs dev store",
+    "build": "next build",
+    "start": "node scripts/run.mjs start store",
+    "lint": "next lint",
+    "postinstall": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:seed": "prisma db seed",
+    "db:studio": "prisma studio",
+    "admin:create": "node --env-file-if-exists=.env scripts/create-admin.mjs",
+    "test": "node --test \"tests/unit/*.test.mjs\"",
+    "test:integration": "node --env-file-if-exists=.env --test \"tests/integration/*.test.mjs\"",
+    "dev:admin": "node scripts/run.mjs dev admin",
+    "start:admin": "node scripts/run.mjs start admin",
+    "db:seed:reviews": "node --env-file-if-exists=.env prisma/seed-reviews.mjs"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.3",
+    "bcryptjs": "^3.0.3",
+    "lucide-react": "^1.47.0",
+    "next": "^15.5.25",
+    "nodemailer": "^10.0.10",
+    "razorpay": "^2.9.8",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "server-only": "^0.0.1",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "postcss": "^8.5.28",
+    "prisma": "^6.19.3",
+    "tailwindcss": "^4.3.3"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.mjs"
+  }
+}

@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+/* Design tokens — extracted from the Aaurawell reference design */
+@theme {
+  --color-cream: #fbf7f1;
+  --color-cream-dark: #f4ece1;
+  --color-ivory: #fffdf9;
+  --color-forest: #0f4a2e;
+  --color-forest-dark: #0a3521;
+  --color-leaf: #2f7a3e;
+  --color-sage: #e8f1e1;
+  --color-sage-dark: #cfe2c4;
+  --color-blush: #fdebef;
+  --color-rose: #fde6e6;
+  --color-peach: #fdeadb;
+  --color-berry: #d62f6b;
+  --color-crimson: #c8202f;
+  --color-tangerine: #ee6a1f;
+  --color-gold: #b8913a;
+  --color-ink: #1d2b22;
+  --color-muted: #5f6b62;
+  --color-line: #e9e1d4;
+
+  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-poppins), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-script: var(--font-script-face), "Brush Script MT", cursive;
+
+  --shadow-soft: 0 10px 30px -12px rgb(29 43 34 / 0.18);
+  --shadow-card: 0 4px 20px -8px rgb(29 43 34 / 0.12);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: clip;
+  }
+  body {
+    @apply bg-cream font-sans text-ink antialiased;
+    overflow-x: clip;
+  }
+  h1, h2, h3, h4 {
+    @apply font-serif text-forest;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-leaf;
+  }
+}
+
+@utility container-page {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
