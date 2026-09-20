@@ -27,9 +27,9 @@ export default function MobileMenu({ links }) {
         aria-expanded={open}
         aria-controls="mobile-menu"
         onClick={() => setOpen(true)}
-        className="inline-flex size-10 items-center justify-center rounded-full text-forest hover:bg-sage"
+        className="inline-flex size-9 items-center justify-center rounded-full text-forest transition-colors hover:bg-sage sm:size-10"
       >
-        <Menu className="size-5" strokeWidth={1.75} />
+        <Menu className="size-[18px] sm:size-5" strokeWidth={1.75} />
       </button>
 
       {/* Portal to <body>: the sticky header's backdrop-blur would otherwise
@@ -51,13 +51,13 @@ export default function MobileMenu({ links }) {
           open ? "visible translate-x-0" : "invisible translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-between border-b border-line p-4">
+        <div className="flex h-14 md:h-16 items-center justify-between border-b border-line px-4">
           <Logo />
           <button
             type="button"
             aria-label="Close menu"
             onClick={() => setOpen(false)}
-            className="inline-flex size-10 items-center justify-center rounded-full text-forest hover:bg-sage"
+            className="inline-flex size-9 items-center justify-center rounded-full text-forest hover:bg-sage sm:size-10"
           >
             <X className="size-5" />
           </button>

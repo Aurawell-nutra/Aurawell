@@ -50,7 +50,7 @@ export default function Footer() {
       <Botanical name="sprig" className="top-0 right-[30%] hidden w-12 -scale-y-100 opacity-15 lg:block" />
       <div className="relative container-page grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.4fr] lg:gap-8">
         <div className="sm:col-span-2 lg:col-span-1">
-          <Logo light />
+          <Logo light markClassName="h-11 w-auto sm:h-12 lg:h-14" />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/70">
             Small gummies. Big wellness. Thoughtfully formulated nutritional gummies for a healthier, brighter you.
           </p>

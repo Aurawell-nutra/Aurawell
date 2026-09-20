@@ -91,10 +91,10 @@ export function LogoMark({ light = false, tagline = true, className }) {
   );
 }
 
-export default function Logo({ light = false, tagline = true, className }) {
+export default function Logo({ light = false, tagline = true, className, markClassName }) {
   return (
-    <Link href="/" aria-label="Aaurawell Nutra home" className={cn("inline-flex shrink-0", className)}>
-      <LogoMark light={light} tagline={tagline} className="h-12 w-auto sm:h-14" />
+    <Link href="/" aria-label="Aaurawell Nutra home" className={cn("inline-flex shrink-0 items-center", className)}>
+      <LogoMark light={light} tagline={tagline} className={cn("h-10 w-auto md:h-12", markClassName)} />
     </Link>
   );
 }
