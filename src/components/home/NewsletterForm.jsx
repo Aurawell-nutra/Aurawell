@@ -42,6 +42,7 @@ export default function NewsletterForm() {
           name="email"
           type="email"
           required
+          size={1}
           maxLength={254}
           autoComplete="email"
           placeholder="Enter your email"
