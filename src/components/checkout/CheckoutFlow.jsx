@@ -325,17 +325,22 @@ export default function CheckoutFlow() {
         {step === 2 && quote && (
           <div>
             <h2 className="font-serif text-2xl text-forest">Payment</h2>
-            <div className="mt-5 rounded-2xl border border-forest bg-sage/40 p-5">
-              <p className="flex items-center gap-2 text-sm font-medium text-ink">
-                <ShieldCheck className="size-5 text-forest" aria-hidden /> Secure payment with Razorpay
+            {/* Coming Soon notice — Razorpay integration is ready, just temporarily disabled */}
+            <div className="mt-5 rounded-2xl border border-amber-300 bg-amber-50 p-6 text-center">
+              <p className="text-lg font-semibold text-amber-800">🚀 Online Payment — Coming Soon!</p>
+              <p className="mt-2 text-sm text-amber-700">
+                We&apos;re setting up secure online payments with Razorpay. This feature will be available shortly.
               </p>
-              <p className="mt-1 text-xs text-muted">UPI, credit & debit cards, net banking and wallets.</p>
+              <p className="mt-3 text-xs text-amber-600">
+                UPI, credit &amp; debit cards, net banking and wallets — all coming your way!
+              </p>
             </div>
             <p className="mt-6 flex items-center gap-2 text-xs text-muted">
-              <Lock className="size-3.5" aria-hidden /> Payments are processed by Razorpay. We never see or store your card or UPI details.
+              <Lock className="size-3.5" aria-hidden /> Payments will be processed securely by Razorpay.
             </p>
             <div className="mt-10 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
               <BackButton onClick={() => goTo(1)} disabled={busy} />
+              {/* TODO: Re-enable this button when Razorpay is ready
               <button
                 type="button"
                 onClick={pay}
@@ -344,6 +349,14 @@ export default function CheckoutFlow() {
               >
                 {busy ? "Processing…" : `Pay ${formatPaise(quote.totalAmount)}`}
                 {!busy && <ArrowRight className="size-4" aria-hidden />}
+              </button>
+              */}
+              <button
+                type="button"
+                disabled
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gray-300 px-8 py-3.5 text-sm font-medium text-gray-500 cursor-not-allowed"
+              >
+                Pay {formatPaise(quote.totalAmount)} — Coming Soon
               </button>
             </div>
           </div>
