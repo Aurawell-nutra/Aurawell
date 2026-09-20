@@ -81,7 +81,7 @@ export default function TrackOrderForm() {
             {order.items.map((item) => (
               <li key={item.name} className="flex items-center gap-3 text-sm">
                 <span className="relative size-12 shrink-0 overflow-hidden rounded-xl bg-cream">
-                  <Image src={item.image} alt="" fill sizes="48px" className="object-cover object-top" />
+                  <Image src={item.image} alt="" fill sizes="48px" className="object-contain p-1" />
                 </span>
                 <span className="flex-1">
                   {item.name} <span className="text-muted">× {item.quantity}</span>

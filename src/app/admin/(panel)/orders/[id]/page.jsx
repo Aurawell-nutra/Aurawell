@@ -55,7 +55,7 @@ export default async function AdminOrderPage({ params }) {
               {order.items.map((item) => (
                 <li key={item.id} className="flex items-center gap-4 py-3 text-sm">
                   <span className="relative size-14 shrink-0 overflow-hidden rounded-xl bg-cream">
-                    <Image src={item.productImage} alt="" fill sizes="56px" className="object-cover object-top" />
+                    <Image src={item.productImage} alt="" fill sizes="56px" className="object-contain p-1" />
                   </span>
                   <div className="flex-1">
                     <p className="font-medium">{item.productName}</p>

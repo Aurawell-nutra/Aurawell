@@ -3,12 +3,6 @@ import { ArrowRight, Leaf, Sparkles, Truck } from "lucide-react";
 import Link from "next/link";
 import Botanical from "@/components/ui/Botanical";
 
-const JARS = [
-  { src: "/images/products/pms-care-gummy-soft.webp", alt: "PMS Care Gummy", className: "z-10 w-[30%] -rotate-6 translate-y-6" },
-  { src: "/images/products/daily-nutra-gummy-soft.webp", alt: "Daily Nutra Gummy", className: "z-20 -mx-[6%] w-[36%]" },
-  { src: "/images/products/iron-glow-gummy-soft.webp", alt: "Iron Glow Gummy", className: "z-10 w-[30%] rotate-6 translate-y-6" },
-];
-
 const PERKS = [
   { icon: Truck, label: "Free shipping over ₹599" },
   { icon: Leaf, label: "Gelatin free" },
@@ -62,19 +56,15 @@ export default function PromoBanner({
             </Link>
           </div>
 
-          <div className="relative flex justify-center px-6 pb-10 md:px-10 md:py-10">
-            {/* Arched cream stage for the jars */}
-            <div className="relative w-full max-w-md">
-              <div className="absolute inset-x-[8%] top-[6%] bottom-0 rounded-t-full bg-gradient-to-b from-cream to-cream-dark shadow-[inset_0_-20px_40px_-20px_rgba(15,74,46,0.25)]" aria-hidden />
-              <div className="absolute inset-x-[8%] top-[6%] bottom-0 rounded-t-full border border-gold/40" aria-hidden />
-              <div className="relative flex items-end justify-center px-[10%] pt-[18%]">
-                {JARS.map((jar) => (
-                  <div key={jar.src} className={`relative ${jar.className}`}>
-                    <Image src={jar.src} alt={jar.alt} width={320} height={546} sizes="(min-width: 768px) 180px, 30vw" className="h-auto w-full drop-shadow-2xl" />
-                  </div>
-                ))}
-              </div>
-              <div className="relative mx-auto -mt-4 h-6 w-[80%] rounded-[50%] bg-forest-dark/40 blur-md" aria-hidden />
+          <div className="relative p-5 md:py-8 md:pr-8 md:pl-0">
+            <div className="relative aspect-[3/2] overflow-hidden rounded-[1.4rem] border border-gold/25 shadow-card">
+              <Image
+                src="/images/banners/all-gummies.webp"
+                alt="The full range of Aaurawell gummies"
+                fill
+                sizes="(min-width: 768px) 45vw, 100vw"
+                className="object-cover"
+              />
             </div>
           </div>
         </div>

@@ -26,7 +26,7 @@ export default function OrderSummary({ showItems = false, quote, children }) {
           {items.map((item) => (
             <li key={item.key} className="flex items-center gap-3">
               <span className="relative size-14 shrink-0 overflow-hidden rounded-xl bg-cream">
-                <Image src={item.image} alt="" fill sizes="56px" className="object-cover object-top" />
+                <Image src={item.image} alt="" fill sizes="56px" className="object-contain p-1" />
                 <span className="absolute -top-0 -right-0 flex size-5 items-center justify-center rounded-bl-lg bg-forest text-[0.65rem] text-white">
                   {item.quantity}
                 </span>

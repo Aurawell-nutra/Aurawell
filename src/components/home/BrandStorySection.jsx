@@ -18,8 +18,8 @@ export default function BrandStorySection() {
         <div className="grid overflow-hidden rounded-[2rem] border border-line bg-white shadow-card lg:grid-cols-2">
           <div className="relative min-h-72 bg-blush sm:min-h-96">
             <Image
-              src="/images/banners/daily-nutra-gummy-banner.webp"
-              alt="Aaurawell Daily Nutra Gummy bottle, front and back label"
+              src="/images/banners/all-gummies.webp"
+              alt="The full range of Aaurawell gummies"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"

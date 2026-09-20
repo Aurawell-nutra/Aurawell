@@ -17,7 +17,7 @@ export default function ProductCard({ product, variant = "home" }) {
           alt={`${name} — bottle of ${count} gummies`}
           fill
           sizes="(min-width: 1024px) 280px, (min-width: 640px) 45vw, 90vw"
-          className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+          className="object-contain p-5 transition-transform duration-500 group-hover:scale-[1.04]"
         />
       </Link>
 

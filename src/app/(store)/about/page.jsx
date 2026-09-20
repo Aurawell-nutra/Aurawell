@@ -48,8 +48,8 @@ export default function AboutPage() {
           <div className="relative">
             <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] shadow-soft">
               <Image
-                src="/images/banners/pms-care-gummy-banner.webp"
-                alt="Aaurawell PMS Care Gummy bottles"
+                src="/images/banners/all-gummies.webp"
+                alt="The full range of Aaurawell gummies"
                 fill
                 priority
                 sizes="(min-width: 1024px) 50vw, 100vw"
@@ -85,7 +85,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 gap-4">
             {["/images/products/gut-comfort-gummy.webp", "/images/products/daily-nutra-gummy.webp"].map((src, i) => (
               <div key={src} className={`relative aspect-[3/4] overflow-hidden rounded-3xl ${i ? "mt-10 bg-peach" : "bg-sage"}`}>
-                <Image src={src} alt="" fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-cover object-top" />
+                <Image src={src} alt="" fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-contain p-3" />
               </div>
             ))}
           </div>

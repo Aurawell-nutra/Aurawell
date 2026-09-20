@@ -57,7 +57,7 @@ export default function ProductGallery({ product }) {
                 active === i ? "border-forest" : "border-line hover:border-sage-dark"
               )}
             >
-              <Image src={img.src} alt="" fill sizes="80px" className="object-cover object-top" />
+              <Image src={img.src} alt="" fill sizes="80px" className="object-contain p-1" />
             </button>
           </li>
         ))}
@@ -143,7 +143,7 @@ export default function ProductGallery({ product }) {
                       aria-pressed={active === i}
                       className={cn("relative block size-14 overflow-hidden rounded-xl border-2", active === i ? "border-white" : "border-white/20 opacity-60 hover:opacity-100")}
                     >
-                      <Image src={img.src} alt="" fill sizes="56px" className="object-cover object-top" />
+                      <Image src={img.src} alt="" fill sizes="56px" className="object-contain p-1" />
                     </button>
                   </li>
                 ))}

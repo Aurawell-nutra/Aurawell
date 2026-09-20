@@ -49,7 +49,7 @@ export const products = [
     ],
     image: "/images/products/pms-care-gummy.webp",
     heroImage: "/images/products/pms-care-gummy-soft.webp",
-    banner: "/images/banners/pms-care-gummy-banner.webp",
+    banner: "/images/banners/all-gummies.webp",
     theme: {
       bg: "bg-blush",
       accent: "text-berry",
@@ -90,7 +90,7 @@ export const products = [
     ],
     image: "/images/products/gut-comfort-gummy.webp",
     heroImage: "/images/products/gut-comfort-gummy-soft.webp",
-    banner: "/images/banners/gut-comfort-gummy-banner.webp",
+    banner: "/images/banners/all-gummies.webp",
     theme: {
       bg: "bg-sage",
       accent: "text-leaf",
@@ -139,7 +139,7 @@ export const products = [
     ],
     image: "/images/products/daily-nutra-gummy.webp",
     heroImage: "/images/products/daily-nutra-gummy-soft.webp",
-    banner: "/images/banners/daily-nutra-gummy-banner.webp",
+    banner: "/images/banners/all-gummies.webp",
     theme: {
       bg: "bg-peach",
       accent: "text-tangerine",
@@ -183,7 +183,7 @@ export const products = [
     ],
     image: "/images/products/iron-glow-gummy.webp",
     heroImage: "/images/products/iron-glow-gummy-soft.webp",
-    banner: "/images/banners/iron-glow-gummy-banner.webp",
+    banner: "/images/banners/all-gummies.webp",
     theme: {
       bg: "bg-rose",
       accent: "text-crimson",

@@ -45,7 +45,7 @@ function ImageField({ label, value, onChange, error, onUpload, uploading }) {
       <div className="flex gap-3">
         <span className="relative size-16 shrink-0 overflow-hidden rounded-xl border border-line bg-cream">
           {value && /^\/(images|api\/media)\//.test(value) ? (
-            <Image src={value} alt="" fill sizes="64px" className="object-cover object-top" unoptimized={value.startsWith("/api/")} />
+            <Image src={value} alt="" fill sizes="64px" className="object-contain p-1" unoptimized={value.startsWith("/api/")} />
           ) : (
             <ImagePlus className="m-auto mt-5 size-5 text-muted" aria-hidden />
           )}

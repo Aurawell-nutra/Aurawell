@@ -82,6 +82,19 @@ export default function HeroSection({ products }) {
             <span className="ml-8">in Every Gummy</span>
           </p>
 
+          {/* Brand photography background for the jar group */}
+          <div className="absolute inset-x-0 top-10 bottom-8 -z-10 overflow-hidden rounded-[2rem] sm:top-14">
+            <Image
+              src="/images/banners/hero-background.webp"
+              alt=""
+              fill
+              priority
+              sizes="(min-width: 1024px) 700px, 100vw"
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-cream/60 via-transparent to-cream/30" aria-hidden />
+          </div>
+
           <div className="relative flex items-end justify-center pt-20 sm:pt-24">
             {products.slice(0, 4).map((product, i) => (
               <div key={product.id} className={`relative ${jarStyles[i]}`}>
@@ -97,11 +110,6 @@ export default function HeroSection({ products }) {
               </div>
             ))}
           </div>
-          <div
-            className="relative z-0 mx-auto -mt-8 h-12 w-[95%] rounded-[50%] bg-gradient-to-b from-white to-cream-dark shadow-soft"
-            aria-hidden
-          />
-
           <Image src="/images/decorative/gummy-red.svg" alt="" width={60} height={50} className="absolute bottom-1 left-3 z-40 w-10 sm:w-14" />
           <Image
             src="/images/decorative/gummy-orange.svg"

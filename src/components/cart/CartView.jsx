@@ -43,7 +43,7 @@ export default function CartView() {
             <li key={item.productId} className="grid grid-cols-[auto_1fr] items-center gap-4 py-5 sm:grid-cols-[2fr_1fr_1fr_1fr]">
               <div className="flex items-center gap-4">
                 <Link href={`/shop/${item.slug}`} className="relative size-20 shrink-0 overflow-hidden rounded-2xl bg-cream">
-                  <Image src={item.image} alt={item.name} fill sizes="80px" className="object-cover object-top" />
+                  <Image src={item.image} alt={item.name} fill sizes="80px" className="object-contain p-1" />
                 </Link>
                 <div className="hidden sm:block">
                   <Link href={`/shop/${item.slug}`} className="font-medium text-ink hover:text-forest">
