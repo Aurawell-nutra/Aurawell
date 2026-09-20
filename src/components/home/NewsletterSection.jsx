@@ -13,7 +13,7 @@ export default function NewsletterSection() {
   return (
     <section id="newsletter" className="scroll-mt-24 bg-cream pb-16 sm:pb-20 lg:pb-24">
       <div className="container-page">
-        <div className="relative isolate overflow-hidden rounded-[2rem] bg-forest px-5 py-10 text-white sm:px-10 lg:px-14 lg:py-14">
+        <div className="relative isolate overflow-hidden rounded-[1.5rem] bg-forest px-4 py-8 text-white sm:rounded-[2rem] sm:px-10 sm:py-10 lg:px-14 lg:py-14">
           <Botanical name="corner" className="top-0 right-0 w-36 -scale-y-100 opacity-30 lg:w-48" />
           <Botanical name="tropical" className="bottom-0 left-0 w-32 opacity-20 sm:w-44" />
           <Botanical name="eucalyptus" className="right-0 bottom-0 hidden w-24 -scale-x-100 opacity-20 sm:block" />
@@ -21,20 +21,20 @@ export default function NewsletterSection() {
           <div className="relative grid gap-8 lg:grid-cols-2 lg:gap-10 lg:items-center">
             <div className="text-center lg:text-left">
               <p className="font-script text-2xl text-sage-dark sm:text-3xl">Aaurawell Nutra</p>
-              <h2 className="mt-1 font-serif text-2xl font-semibold leading-tight text-white sm:text-4xl">New Era of Wellness</h2>
+              <h2 className="mt-1 font-serif text-xl font-semibold leading-tight text-white sm:text-4xl">New Era of Wellness</h2>
               <p className="mx-auto mt-2 max-w-md text-xs leading-relaxed text-white/75 sm:mt-3 sm:text-sm lg:mx-0">
                 Join our community for wellness tips, new launches and exclusive offers — straight to your inbox.
               </p>
               <NewsletterForm />
             </div>
 
-            <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+            <ul className="grid grid-cols-2 gap-x-2 gap-y-3 sm:grid-cols-4 sm:gap-4">
               {trustBadges.map(({ icon: Icon, label }) => (
-                <li key={label} className="flex flex-col items-center gap-2.5 text-center sm:gap-3">
+                <li key={label} className="flex flex-col items-center gap-2 text-center sm:gap-3">
                   <span className="flex size-12 items-center justify-center rounded-full border border-white/30 bg-white/5 sm:size-14">
                     <Icon className="size-5 sm:size-6" strokeWidth={1.5} aria-hidden />
                   </span>
-                  <span className="text-xs text-white/85">{label}</span>
+                  <span className="text-[0.65rem] leading-tight text-white/85 sm:text-xs">{label}</span>
                 </li>
               ))}
             </ul>

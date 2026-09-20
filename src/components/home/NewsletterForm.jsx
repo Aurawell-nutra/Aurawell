@@ -33,7 +33,7 @@ export default function NewsletterForm() {
 
   return (
     <form onSubmit={handleSubmit} className="mx-auto mt-6 max-w-md lg:mx-0">
-      <div className="relative flex items-center rounded-full border border-white/25 bg-white/10 p-1.5 pl-4 transition-colors focus-within:border-white/60 sm:pl-5">
+      <div className="relative flex items-center rounded-full border border-white/25 bg-white/10 p-1 pl-3 transition-colors focus-within:border-white/60 sm:p-1.5 sm:pl-5">
         <label htmlFor="newsletter-email" className="sr-only">
           Email address
         </label>
