@@ -83,9 +83,9 @@ export default function AboutPage() {
         <Botanical name="olive" className="right-0 bottom-0 w-40 -scale-x-100 opacity-40 sm:w-56" />
         <div className="container-page relative grid items-center gap-10 lg:grid-cols-2">
           <div className="grid grid-cols-2 gap-4">
-            {["/images/products/gut-comfort-gummy.webp", "/images/products/daily-nutra-gummy.webp"].map((src, i) => (
+            {["/images/products/gut-comfort-gummy-lifestyle.webp", "/images/products/pms-care-gummy-lifestyle.webp"].map((src, i) => (
               <div key={src} className={`relative aspect-[3/4] overflow-hidden rounded-3xl ${i ? "mt-10 bg-peach" : "bg-sage"}`}>
-                <Image src={src} alt="" fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-contain p-3" />
+                <Image src={src} alt="" fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-cover" />
               </div>
             ))}
           </div>

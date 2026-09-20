@@ -38,22 +38,14 @@ export default function ProductTabs({ product }) {
               <h2 className="text-3xl">About This Product</h2>
               <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">{product.about}</p>
             </div>
-            <div className={cn("grid grid-cols-2 items-center overflow-hidden rounded-[2rem] px-6 pt-6", product.theme.bg)}>
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] shadow-card sm:aspect-[5/4] lg:aspect-[4/5]">
               <Image
-                src={product.heroImage}
-                alt={`${product.name} bottle`}
-                width={320}
-                height={546}
-                sizes="220px"
-                className="mx-auto h-auto w-full max-w-52 drop-shadow-xl"
+                src={product.gallery[1] ?? product.image}
+                alt={`${product.name} lifestyle photo`}
+                fill
+                sizes="(min-width: 1024px) 45vw, 100vw"
+                className="object-cover"
               />
-              <p className={cn("-rotate-6 pb-6 font-script text-4xl leading-[0.95] sm:text-5xl", product.theme.accent)}>
-                {product.script.map((line) => (
-                  <span key={line} className="block">
-                    {line}
-                  </span>
-                ))}
-              </p>
             </div>
           </div>
         )}
