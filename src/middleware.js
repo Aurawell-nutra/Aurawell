@@ -1,21 +1,20 @@
 import { NextResponse } from "next/server";
 
 /**
- * Splits one Next.js app into two sites by host:
- *   • Admin site  — ADMIN_HOSTS (e.g. admin.aaurawell.com, localhost:3001) or APP_MODE=admin
- *   • Store site  — everything else
+ * The admin panel can be reached two ways:
  *
- * On the admin site, clean URLs (/products) are rewritten to the internal /admin/* routes and
- * every storefront page and public API is unreachable. On the store site, /admin and
- * /api/admin return 404, so the admin panel is never exposed on the public domain.
+ *   1. On its own host — ADMIN_HOSTS (e.g. admin.aaurawell.com, localhost:3001)
+ *      or a process started with APP_MODE=admin. Clean URLs: /products, /orders…
+ *   2. On the store host under /admin — always available, so there is a working
+ *      admin URL even before a separate admin domain is set up (useful on Vercel).
+ *      Set ADMIN_PATH=off to turn this off once the admin domain works.
+ *
+ * Either way the panel still requires a login, and its pages are never indexed.
  */
-
-const NOT_FOUND = "/__not-found";
 
 // Paths the admin site may serve as-is.
 const ADMIN_PASSTHROUGH = [/^\/_next\//, /^\/images\//, /^\/api\/admin(\/|$)/, /^\/api\/media\//, /^\/favicon\.ico$/, /^\/icon\.svg/];
 
-// The admin site must never be cached by shared caches or indexed by search engines.
 function withAdminHeaders(response) {
   response.headers.set("Cache-Control", "no-store");
   response.headers.set("X-Robots-Tag", "noindex, nofollow");
@@ -29,46 +28,50 @@ function adminHosts() {
     .filter(Boolean);
 }
 
-function isAdminRequest(request) {
+function isAdminHost(request) {
   if (process.env.APP_MODE === "admin") return true;
   if (process.env.APP_MODE === "store") return false;
-  const host = (request.headers.get("host") || "").toLowerCase();
-  return adminHosts().includes(host);
+  return adminHosts().includes((request.headers.get("host") || "").toLowerCase());
 }
 
 export function middleware(request) {
   const { pathname } = request.nextUrl;
-  const admin = isAdminRequest(request);
 
-  if (admin) {
+  // --- Admin host: serve the panel at the root -------------------------------
+  if (isAdminHost(request)) {
     if (/^\/(_next|images)\//.test(pathname)) return NextResponse.next();
     if (ADMIN_PASSTHROUGH.some((re) => re.test(pathname))) return withAdminHeaders(NextResponse.next());
 
-    // Old /admin/... links → canonical clean URL on the admin host.
+    // /admin/... → the same page without the prefix
     if (pathname === "/admin" || pathname.startsWith("/admin/")) {
       const url = request.nextUrl.clone();
       url.pathname = pathname.slice("/admin".length) || "/";
       return NextResponse.redirect(url);
     }
 
-    // Everything else (including storefront pages and public APIs) maps into /admin/*,
-    // where unknown paths simply 404.
     const url = request.nextUrl.clone();
     url.pathname = pathname === "/" ? "/admin" : `/admin${pathname}`;
     return withAdminHeaders(NextResponse.rewrite(url));
   }
 
-  // Store host: hide the admin panel and admin APIs completely.
-  if (pathname === "/admin" || pathname.startsWith("/admin/") || pathname === "/api/admin" || pathname.startsWith("/api/admin/")) {
-    const url = request.nextUrl.clone();
-    url.pathname = NOT_FOUND;
-    return NextResponse.rewrite(url, { status: 404 });
+  // --- Store host ------------------------------------------------------------
+  const adminPathEnabled = process.env.ADMIN_PATH !== "off";
+  const isAdminPath = pathname === "/admin" || pathname.startsWith("/admin/");
+  const isAdminApi = pathname === "/api/admin" || pathname.startsWith("/api/admin/");
+
+  if (isAdminPath || isAdminApi) {
+    if (!adminPathEnabled) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/__not-found";
+      return NextResponse.rewrite(url, { status: 404 });
+    }
+    return withAdminHeaders(NextResponse.next());
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  runtime: "nodejs", // read ADMIN_HOSTS / APP_MODE at runtime, not build time
+  runtime: "nodejs", // read ADMIN_HOSTS / APP_MODE / ADMIN_PATH at runtime, not build time
   matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
 };
