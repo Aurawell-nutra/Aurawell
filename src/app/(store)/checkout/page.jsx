@@ -1,7 +1,14 @@
 import PageHeader from "@/components/ui/PageHeader";
 import CheckoutFlow from "@/components/checkout/CheckoutFlow";
 
-export const metadata = { title: "Checkout" };
+export const metadata = {
+  title: "Checkout",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
 
 export default function CheckoutPage() {
   return (

@@ -2,7 +2,8 @@ import { Suspense } from "react";
 import Botanical from "@/components/ui/Botanical";
 import UnsubscribeForm from "@/components/home/UnsubscribeForm";
 
-export const metadata = { title: "Unsubscribe", robots: { index: false } };
+export const metadata = { title: "Unsubscribe", robots: { index: false, follow: false } };
+
 
 // The page asks for a click instead of unsubscribing on load, so email link scanners
 // that pre-open links can't unsubscribe people by accident.

@@ -4,7 +4,8 @@ import Botanical from "@/components/ui/Botanical";
 import { confirmSubscription } from "@/lib/server/newsletter";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Confirm Subscription", robots: { index: false } };
+export const metadata = { title: "Confirm Subscription", robots: { index: false, follow: false } };
+
 
 export default async function NewsletterConfirmPage({ searchParams }) {
   const { token } = await searchParams;

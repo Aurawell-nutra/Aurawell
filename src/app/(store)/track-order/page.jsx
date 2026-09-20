@@ -4,7 +4,12 @@ import TrackOrderForm from "@/components/checkout/TrackOrderForm";
 export const metadata = {
   title: "Track Your Order",
   description: "Check the status of your Aaurawell Nutra order.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
+
 
 export default function TrackOrderPage() {
   return (

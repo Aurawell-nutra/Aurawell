@@ -2,7 +2,14 @@ import { Suspense } from "react";
 import OrderConfirmation from "@/components/checkout/OrderConfirmation";
 import Botanical from "@/components/ui/Botanical";
 
-export const metadata = { title: "Order Confirmed" };
+export const metadata = {
+  title: "Order Confirmed",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
 
 export default function OrderConfirmedPage() {
   return (
